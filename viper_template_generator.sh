@@ -110,4 +110,85 @@ class $1Presenter: $1PresenterProtocol {\n
 "
 echo $PRESENTER_CONTENT>$PRESENTER_FILENAME
 
+# Tests (using Quick/Nimble)
+mkdir Tests
+
+# Assembly
+ASSEMBLY_TESTS_FILENAME="Tests/$1AssemblyTests.swift"
+ASSEMBLY_TESTS_CONTENT="
+import Quick\n
+import Nimble\n
+@testable import ProjectName\n
+\n
+class $1AssemblySpec: QuickSpec {\n
+\t    override func spec() {\n
+\t\t        describe(\"$1 module\") {\n
+\t\t\t\n            
+\t\t\t            let viewController = $1Assembly.create$1Module()\n
+\t\t\t\n            
+\t\t\t            it(\"contains fully initialized presenter\") {\n
+\t\t\t\t                expect(viewController).to(beAKindOf($1View.self))\n
+\t\t\t\t\n                
+\t\t\t\t                let presenter = (viewController as? $1View)?.presenter\n
+\t\t\t\t                let interactor = presenter?.interactor\n
+\t\t\t\t\n                
+\t\t\t\t                expect(presenter).notTo(beNil())\n
+\t\t\t\t                expect(interactor).notTo(beNil())\n
+\t\t\t\t                expect(presenter?.wireframe).notTo(beNil())\n
+\t\t\t\t                expect(presenter?.view).notTo(beNil())\n
+\t\t\t            }\n
+\t\t        }\n
+\t    }\n
+}
+"
+echo $ASSEMBLY_TESTS_CONTENT>$ASSEMBLY_TESTS_FILENAME
+
+# Interactor
+INTERACTOR_TESTS_FILENAME="Tests/$1InteractorTests.swift"
+INTERACTOR_TESTS_CONTENT="
+@testable import ProjectName\n
+import Quick\n
+import Nimble\n
+\n
+class $1InteractorSpec: QuickSpec {\n
+\n
+\toverride func spec() {\n
+\t\t\n
+\t}\n
+}
+"
+echo $INTERACTOR_TESTS_CONTENT>$INTERACTOR_TESTS_FILENAME
+
+# Presenter
+PRESENTER_TESTS_FILENAME="Tests/$1PresenterTests.swift"
+PRESENTER_TESTS_CONTENT="
+@testable import ProjectName\n
+import Quick\n
+import Nimble\n
+\n
+class $1PresenterSpec: QuickSpec {\n
+\n
+\toverride func spec() {\n
+\t\t\n
+\t}\n
+}
+"
+echo $PRESENTER_TESTS_CONTENT>$PRESENTER_TESTS_FILENAME
+
+# Wireframe
+WIREFRAME_TESTS_FILENAME="Tests/$1WireframeTests.swift"
+WIREFRAME_TESTS_CONTENT="
+@testable import ProjectName\n
+import Quick\n
+import Nimble\n
+\n
+class $1WireframeSpec: QuickSpec {\n
+\n
+\toverride func spec() {\n
+\t\t\n
+\t}\n
+}
+"
+echo $WIREFRAME_TESTS_CONTENT>$WIREFRAME_TESTS_FILENAME
+
 
